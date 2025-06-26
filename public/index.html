@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting portal</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 class="main-title">Online Voting System</h1>
+
+    <div class="container">
+        <div class="title">Registration</div> <br>
+
+        <form id="registerForm" >
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="id"> Voter ID</span>
+                    <input type="text" id="id" name="id" placeholder="Enter your Voter ID/ Unique ID here" required>
+                </div>
+
+                <div class="input-box">
+                    <span class="username"> Name</span>
+                    <input type="text" id="username" name="username" placeholder="Enter your Name here" required>
+                </div>
+
+                <div class="input-box">
+                    <span class="dob"> Date of Birth </span>
+                    <input type="date" id="dob" name="dob" placeholder=" Enter your Date of Birth here" required>
+                </div>
+
+                <div class="input-box">
+                    <span class="email"> Email</span>
+                    <input type="text" id="email" name="email" placeholder="Enter your Email ID here" required>
+                </div>
+
+                <div class="input-box">
+                    <span class="number"> Mobile Number</span>
+                    <input type="text" id="number" name="number" placeholder="Enter your Mobile Number here" required>
+                </div>
+
+                <div class="input-box">
+                    <span class="password"> password</span>
+                    <input type="text" id="password" name="password" placeholder="Enter your Password here" required>
+                </div>
+
+                <div class="input-box">
+                    <span class="cnf-password"> confirm password</span>
+                    <input type="text" id="cnf-password" name="cnf-password" placeholder="Confirm your Password" required>
+                </div>
+            </div>
+
+            <div class="button">
+                <input type="submit" value="Register">
+            </div>
+
+            <p style="text-align: center; margin-top: 10px;">
+            Already registered? <a href="login.html">Login here</a>
+            </p>
+
+        </form>
+    </div>
+    <script>
+        document.querySelector('#registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const data = {
+                voterId: document.getElementById('id').value,
+                name: document.getElementById('username').value,
+                dob: document.getElementById('dob').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('number').value,
+                password: document.getElementById('password').value
+            };
+
+            try{ 
+                const res = await fetch('/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+            const msg = await res.text();
+                alert(msg);
+                document.getElementById('registerForm').reset(); // ✅ clear the form
+            } catch (error) {
+                console.error('Error:', error);
+                alert("❌ Something went wrong");
+                }
+        });
+    </script>
+</body>
+</html>

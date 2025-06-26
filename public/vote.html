@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vote Here</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="vote-container">
+    <div class="top-bar">
+      <button onclick="logout()">🔓 Logout</button>
+    </div>
+
+    <h2>🗳️ Cast Your Vote</h2>
+
+    <div class="party-row">
+      <div class="party-card">
+        <img src="bjp.png" alt="BJP Logo" class="party-logo" />
+        <h3>BJP</h3>
+        <button onclick="submitVote('BJP')" class="party-btn">Vote</button>
+      </div>
+
+      <div class="party-card">
+        <img src="congress.png" alt="Congress Logo" class="party-logo" />
+        <h3>Congress</h3>
+        <button onclick="submitVote('Congress')" class="party-btn">Vote</button>
+      </div>
+
+      <div class="party-card">
+        <img src="aap.png" alt="AAP Logo" class="party-logo" />
+        <h3>AAP</h3>
+        <button onclick="submitVote('AAP')" class="party-btn">Vote</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // ✅ Submit vote
+  async function submitVote(partyName) {
+    const voterId = localStorage.getItem("voterId");
+
+    if (!voterId) {
+      alert("❌ Voter not found. Please login again.");
+      return window.location.href = "/login.html";
+    }
+
+    try {
+      const res = await fetch('/vote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ voterId, party: partyName })
+      });
+
+      const result = await res.json();
+      alert(result.message);
+
+      if (result.success) {
+        localStorage.removeItem("voterId"); // Clear session
+        window.location.href = "/login.html"; // Go back to login
+      }
+
+    } catch (err) {
+      console.error(err);
+      alert("❌ Voting failed");
+    }
+  }
+
+  // ✅ Logout
+  function logout() {
+    localStorage.removeItem("voterId");
+    alert("🔒 You have been logged out.");
+    window.location.href = "/login.html";
+  }
+</script>
+</body>
+</html>

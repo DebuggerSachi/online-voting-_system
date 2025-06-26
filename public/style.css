@@ -1,0 +1,226 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  background: linear-gradient(135deg,#b700ff,#0673bb);
+  padding: 30px 20px 30px 20px;
+}
+.main-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.container {
+  max-width:700px ;
+    width: 100%;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 5px
+}
+
+.container .title{
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+}
+.container .title::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 30px;
+    background:linear-gradient(135deg,#71b7e6, #9b59b5)
+}
+.container form .user-details{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+form .user-details .input-box{
+    margin-bottom: 15px ;
+    width: calc(100% / 2-20px);
+}
+.user-details .input-box .id{
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.user-details .input-box input{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left:15px ;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+.user-details .input-box input:focus,
+.user-details .input-box input:valid{
+    border-color:#9b59b5 ;
+}
+form .button{
+    height: 45px;margin: 45px 0;
+}
+form .button input{
+    height: 100%;
+    width: 100%;
+    outline:none ;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg,#71b7e6, #9b59b5);
+}
+
+form .button input:hover{
+     background: linear-gradient(-135deg,#71b7e6, #9b59b5);
+}
+p{
+  text-align: center;
+  margin-top: -20px;
+  font-size: 15px;
+  font-weight: 500;
+}
+p a {
+  color: #9b59b5;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+p a:hover {
+  text-decoration: underline;
+  color: #7b3e87;
+}
+@media(max-width:548px){
+    .container{
+        max-width: 100%;
+    }
+    form .user-details .input-box{
+        margin-bottom: 15px ;
+        width: 100%;
+    }
+    .container form .user-details{
+        max-height: 300px;
+        overflow-y:scroll ;
+    }
+    .user-details::-webkit-scrollbar{
+        width: 100%;
+
+    }
+}
+
+
+/*login*/
+.login-container {
+  max-width: 450px;
+  width: 100%;
+  background: #fff;
+  padding: 30px 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.login-title {
+  font-size: 34px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.login-container .input-box {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.login-container label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #333;
+}
+
+
+/* voting */
+.vote-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  text-align: center;
+}
+.party-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.party-card {
+  flex: 1 1 250px;
+  max-width: 30%;
+  min-width: 250px;
+  margin: auto;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+
+.party-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.party-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(135deg,#71b7e6, #9b59b5);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.party-btn:hover {
+  background: linear-gradient(-135deg,#71b7e6, #9b59b5);
+}
+
+ .top-bar {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .top-bar button {
+      padding: 10px 15px;
+      font-weight: bold;
+      cursor: pointer;
+      background-color: #0673bb;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    .top-bar button:hover {
+      background-color: #045c9c;
+    }

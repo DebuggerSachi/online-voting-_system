@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Voter Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="login-container">
+    <h2 class="login-title">Voter Login</h2>
+    <form id="loginForm">
+      <div class="input-box">
+        <label for="loginId">Voter ID:</label>
+        <input type="text" id="loginId" required />
+      </div>
+      <div class="input-box">
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" required />
+      </div>
+      <div class="button">
+        <input type="submit" value="Login" />
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = {
+        voterId: document.getElementById('loginId').value,
+        password: document.getElementById('loginPassword').value
+      };
+
+      try {
+        const res = await fetch('/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const result = await res.json();
+        if (result.success) {
+          localStorage.setItem("voterId", data.voterId);
+          window.location.href = "/vote.html";
+        } else {
+          alert("❌ " + result.message);
+        }
+      } catch (err) {
+        alert("❌ Login failed.");
+      }
+    });
+  </script>
+</body>
+</html>
